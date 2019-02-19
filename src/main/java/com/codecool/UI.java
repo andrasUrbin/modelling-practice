@@ -24,10 +24,10 @@ public class UI {
         caloriesNeeded = scanner.nextInt();
         scanner.nextLine();
         user.setDailyCalorieNeeds(caloriesNeeded);
-        printMenu(user, fridge, listOfFood);
+        menu(user, fridge, listOfFood);
     }
 
-    private void printMenu(User user, Fridge fridge, List<Food> listOfFood){
+    private void menu(User user, Fridge fridge, List<Food> listOfFood){
         int menuOption;
         boolean isRunning = true;
         while(isRunning){
@@ -36,9 +36,9 @@ public class UI {
             System.out.println("2. See what's in the fridge!");
             System.out.println("3. Put something in the fridge!");
             System.out.println("4. Take out something from the fridge to eat!");
-            System.out.println("5. List the items available in the fridge!");
             System.out.println("0. Leave the kitchen!");
             menuOption = scanner.nextInt();
+            scanner.nextLine();
 
             switch(menuOption){
                 case 1:
@@ -58,31 +58,19 @@ public class UI {
                     scanner.nextLine();
                     switch (subMenu){
                         case 1:
-                            System.out.println("Putting your veggie into the fridge!");
-                            Veggie newVeggie = new Veggie(null, 0, 0, 0, 0, FoodType.Veggie, null);
-                            System.out.println("What's the veggies name?");
-                            newVeggie.setName(scanner.nextLine());
-                            System.out.println("How many calories does it have?");
-                            newVeggie.setCalories(scanner.nextInt());
-                            scanner.nextLine();
-                            System.out.println("How many carboH does it have?");
-                            newVeggie.setCarboH(scanner.nextInt());
-                            scanner.nextLine();
-                            System.out.println("How many protein does it have?");
-                            newVeggie.setProtein(scanner.nextInt());
-                            scanner.nextLine();
-                            System.out.println("How many fat does it have?");
-                            newVeggie.setFat(scanner.nextInt());
-                            scanner.nextLine();
-                            System.out.println("What's the dominant vitamin in it?");
-                            newVeggie.setMostVitamin(scanner.nextLine());
-                            fridge.addFood(listOfFood, newVeggie);
-                            System.out.println("Your item is added to the fridge!");
-                            for(Food food : fridge.getListOfFood()){
-                                System.out.println(food.getName());
-                            }
+                            fridge.addVeggie(listOfFood);
+                            break;
+                        case 2:
+                            fridge.addFruit(listOfFood);
+                            break;
+                        case 3:
+                            fridge.addMeat(listOfFood);
                             break;
                     }
+                    break;
+                case 4:
+                    fridge.removeFood(listOfFood, user);
+                    break;
 
                 case 0:
                     System.out.printf("See you soon!");
