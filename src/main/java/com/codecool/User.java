@@ -47,5 +47,6 @@ public class User {
 
     public int addCalorieTaken(int calories){
         this.dailyCalorieTaken += calories;
+        return dailyCalorieTaken;
     }
 }
