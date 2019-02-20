@@ -1,13 +1,12 @@
 package com.codecool;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.Serializable;
 
-public class Veggie extends Food {
+public class Veggie extends Food implements Serializable {
 
     private String mostVitamin;
 
-    public Veggie(String name, int calories, int carboH, int protein, int fat, FoodType foodType, String mostVitamin) {
+    Veggie(String name, int calories, int carboH, int protein, int fat, FoodType foodType, String mostVitamin) {
         super(name, calories, carboH, protein, fat, foodType);
         this.mostVitamin = mostVitamin;
     }
@@ -16,7 +15,7 @@ public class Veggie extends Food {
         return mostVitamin;
     }
 
-    public void setMostVitamin(String mostVitamin) {
+    void setMostVitamin(String mostVitamin) {
         this.mostVitamin = mostVitamin;
     }
 

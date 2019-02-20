@@ -1,10 +1,12 @@
 package com.codecool;
 
-public class Fruit extends Food {
+import java.io.Serializable;
+
+public class Fruit extends Food implements Serializable {
 
     private int phIndex;
 
-    public Fruit(String name, int calories, int carboH, int protein, int fat, FoodType foodType, int phIndex) {
+    Fruit(String name, int calories, int carboH, int protein, int fat, FoodType foodType, int phIndex) {
         super(name, calories, carboH, protein, fat, foodType);
         this.phIndex = phIndex;
     }
@@ -13,7 +15,7 @@ public class Fruit extends Food {
         return phIndex;
     }
 
-    public void setPhIndex(int phIndex) {
+    void setPhIndex(int phIndex) {
         this.phIndex = phIndex;
     }
 

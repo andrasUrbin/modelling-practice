@@ -1,6 +1,8 @@
 package com.codecool;
 
-public abstract class Food{
+import java.io.Serializable;
+
+public abstract class Food implements Serializable {
 
     private String name;
     private int calories;
@@ -9,7 +11,7 @@ public abstract class Food{
     private int fat;
     private FoodType foodType;
 
-    public Food(String name, int calories, int carboH, int protein, int fat, FoodType foodType) {
+    Food(String name, int calories, int carboH, int protein, int fat, FoodType foodType) {
         this.name = name;
         this.calories = calories;
         this.carboH = carboH;
@@ -30,51 +32,51 @@ public abstract class Food{
             '}';
     }
 
-    public String getName() {
+    String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    void setName(String name) {
         this.name = name;
     }
 
-    public int getCalories() {
+    int getCalories() {
         return calories;
     }
 
-    public void setCalories(int calories) {
+    void setCalories(int calories) {
         this.calories = calories;
     }
 
-    public int getCarboH() {
+    int getCarboH() {
         return carboH;
     }
 
-    public void setCarboH(int carboH) {
+    void setCarboH(int carboH) {
         this.carboH = carboH;
     }
 
-    public int getProtein() {
+    int getProtein() {
         return protein;
     }
 
-    public void setProtein(int protein) {
+    void setProtein(int protein) {
         this.protein = protein;
     }
 
-    public int getFat() {
+    int getFat() {
         return fat;
     }
 
-    public void setFat(int fat) {
+    void setFat(int fat) {
         this.fat = fat;
     }
 
-    public FoodType getFoodType() {
+    FoodType getFoodType() {
         return foodType;
     }
 
-    public void setFoodType(FoodType foodType) {
+    void setFoodType(FoodType foodType) {
         this.foodType = foodType;
     }
 }

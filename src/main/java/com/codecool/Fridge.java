@@ -1,16 +1,17 @@
 package com.codecool;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Fridge{
+public class Fridge implements Serializable {
 
     private int temperature = 10;
     private int numberOfItems = 0;
     private boolean isFridgeOn = false;
     private List<Food> listOfFood = new ArrayList<>();
-    private Scanner scanner = new Scanner(System.in);
+    private transient Scanner scanner = new Scanner(System.in);
 
 
 
@@ -59,7 +60,7 @@ public class Fridge{
         this.temperature = temperature;
     }
 
-    public int getNumberOfItems() {
+    private int getNumberOfItems() {
         return numberOfItems;
     }
 
@@ -75,7 +76,7 @@ public class Fridge{
         isFridgeOn = fridgeOn;
     }
 
-    public List<Food> getListOfFood() {
+    List<Food> getListOfFood() {
         return listOfFood;
     }
 
@@ -90,7 +91,7 @@ public class Fridge{
         this.listOfFood = listOfFood;
     }
 
-    public List<Food> addVeggie(List<Food> listOfFood){
+    void addVeggie(List<Food> listOfFood){
         System.out.println("Putting your veggie into the fridge!");
         Veggie newVeggie = new Veggie(null, 0, 0, 0, 0, FoodType.Veggie, null);
         System.out.println("What's the veggie's name?");
@@ -115,10 +116,9 @@ public class Fridge{
             System.out.println(food.getName());
         }
         this.numberOfItems = getNumberOfItems() + 1;
-        return listOfFood;
     }
 
-    public List<Food> addFruit(List<Food> listOfFood){
+    void addFruit(List<Food> listOfFood){
         System.out.println("Putting your fruit into the fridge!");
         Fruit newFruit = new Fruit(null, 0, 0, 0, 0, FoodType.Fruit, 6 );
         System.out.println("What's the fruit's name?");
@@ -144,10 +144,9 @@ public class Fridge{
             System.out.println(food.getName());
         }
         this.numberOfItems = getNumberOfItems() + 1;
-        return listOfFood;
     }
 
-    public List<Food> addMeat(List<Food> listOfFood){
+    void addMeat(List<Food> listOfFood){
         System.out.println("Putting your fruit into the fridge!");
         Meat newMeat = new Meat(null, 0, 0, 0, 0, FoodType.Fruit, true );
         System.out.println("What's the fruit's name?");
@@ -173,10 +172,9 @@ public class Fridge{
             System.out.println(food.getName());
         }
         this.numberOfItems = getNumberOfItems() + 1;
-        return listOfFood;
     }
 
-    public List<Food> removeFood(List<Food> listOfFood, User user){
+    void removeFood(List<Food> listOfFood, User user){
         Food tempFood = null;
         for(Food food : listOfFood){
             System.out.println(food.getName());
@@ -194,6 +192,5 @@ public class Fridge{
 
         System.out.println("You've eaten " + toRemove + " and you have " + user.getDailyCalorieTaken() + " calories now!");
         this.numberOfItems = getNumberOfItems() - 1;
-        return listOfFood;
     }
 }

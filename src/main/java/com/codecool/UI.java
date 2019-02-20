@@ -1,8 +1,9 @@
 package com.codecool;
 
+import java.io.*;
 import java.util.*;
 
-public class UI {
+class UI {
 
     private Scanner scanner = new Scanner(System.in);
 
@@ -29,13 +30,14 @@ public class UI {
 
     private void menu(User user, Fridge fridge, List<Food> listOfFood){
         int menuOption;
-        boolean isRunning = true;
-        while(isRunning){
+        while(true){
             System.out.println("What would you like to do in the kitchen?");
             System.out.println("1. See how many calories I've eaten today!");
             System.out.println("2. See what's in the fridge!");
             System.out.println("3. Put something in the fridge!");
             System.out.println("4. Take out something from the fridge to eat!");
+            System.out.println("5. Save your actual state!");
+            System.out.println("6. Load previous save!");
             System.out.println("0. Leave the kitchen!");
             menuOption = scanner.nextInt();
             scanner.nextLine();
@@ -71,7 +73,36 @@ public class UI {
                 case 4:
                     fridge.removeFood(listOfFood, user);
                     break;
-
+                case 5:
+                    serialization(fridge, user);
+                    break;
+                case 6:
+                    try {
+                        FileInputStream fileIn = new FileInputStream("target/save.ser");
+                        ObjectInputStream in = new ObjectInputStream(fileIn);
+                        fridge = (Fridge) in.readObject();
+                        user = (User) in.readObject();
+                        in.close();
+                        fileIn.close();
+                    } catch (IOException i) {
+                        i.printStackTrace();
+                        return;
+                    } catch (ClassNotFoundException c) {
+                        System.out.println("User class not found");
+                        c.printStackTrace();
+                        return;
+                    }
+                    System.out.println("Fridge class deserialized!\n");
+                    System.out.println("What does the fridge contain?\n");
+                    for(Food food : fridge.getListOfFood()){
+                        System.out.println(food.getName());
+                    }
+                    System.out.println("\nUser class deserialized!\n");
+                    System.out.println("User information: \n");
+                    System.out.println("Username: " + user.getName());
+                    System.out.println("User's calorie need: " + user.getDailyCalorieNeeds());
+                    System.out.println("How many calories the user has already eaten today: " + user.getDailyCalorieTaken());
+                    break;
                 case 0:
                     System.out.printf("See you soon!");
                     System.exit(0);
@@ -79,4 +110,20 @@ public class UI {
             }
         }
     }
+
+    private void serialization(Fridge fridge, User user){
+        try {
+            FileOutputStream fileOut = new FileOutputStream("target/save.ser");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(fridge);
+            out.writeObject(user);
+            out.close();
+            fileOut.close();
+            System.out.printf("Serialized data is saved in target/save.ser\n");
+        } catch (IOException i) {
+            i.printStackTrace();
+        }
+    }
+
+
 }

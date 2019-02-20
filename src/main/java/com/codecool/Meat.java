@@ -1,10 +1,12 @@
 package com.codecool;
 
-public class Meat extends Food {
+import java.io.Serializable;
+
+public class Meat extends Food implements Serializable {
 
     private boolean healthyMeat;
 
-    public Meat(String name, int calories, int carboH, int protein, int fat, FoodType foodType, boolean healthyMeat) {
+    Meat(String name, int calories, int carboH, int protein, int fat, FoodType foodType, boolean healthyMeat) {
         super(name, calories, carboH, protein, fat, foodType);
         this.healthyMeat = healthyMeat;
     }
@@ -13,7 +15,7 @@ public class Meat extends Food {
         return healthyMeat;
     }
 
-    public void setHealthyMeat(boolean healthyMeat) {
+    void setHealthyMeat(boolean healthyMeat) {
         this.healthyMeat = healthyMeat;
     }
 
