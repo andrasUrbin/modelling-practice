@@ -3,9 +3,9 @@ package com.codecool;
 import java.io.*;
 import java.util.*;
 
-class UI {
+class UI{
 
-    private Scanner scanner = new Scanner(System.in);
+    private static Scanner scanner = new Scanner(System.in);
 
 
     void createUser(){
@@ -22,13 +22,12 @@ class UI {
         Fridge fridge = new Fridge(10, 3, true, listOfFood);
         user.setName(scanner.nextLine());
         System.out.println("Welcome " + user.getName() + "\nHow many calories do you need for a day?");
-        caloriesNeeded = scanner.nextInt();
-        scanner.nextLine();
+        caloriesNeeded = inputInt();
         user.setDailyCalorieNeeds(caloriesNeeded);
         menu(user, fridge, listOfFood);
     }
 
-    private void menu(User user, Fridge fridge, List<Food> listOfFood){
+    private void menu(User user, Fridge fridge, List<Food> listOfFood) {
         int menuOption;
         while(true){
             System.out.println("What would you like to do in the kitchen?");
@@ -39,8 +38,7 @@ class UI {
             System.out.println("5. Save your actual state!");
             System.out.println("6. Load previous save!");
             System.out.println("0. Leave the kitchen!");
-            menuOption = scanner.nextInt();
-            scanner.nextLine();
+            menuOption = inputInt();
 
             switch(menuOption){
                 case 1:
@@ -56,8 +54,7 @@ class UI {
                     System.out.println("1. Some veggie? ");
                     System.out.println("2. Some fruit? ");
                     System.out.println("3. Some meat? ");
-                    int subMenu = scanner.nextInt();
-                    scanner.nextLine();
+                    int subMenu = inputInt();
                     switch (subMenu){
                         case 1:
                             fridge.addVeggie(listOfFood);
@@ -106,7 +103,8 @@ class UI {
                 case 0:
                     System.out.printf("See you soon!");
                     System.exit(0);
-
+                default:
+                    System.out.println("Not an option, try again!");
             }
         }
     }
@@ -125,5 +123,26 @@ class UI {
         }
     }
 
+    static int inputInt() {
+        while (true) {
+            System.out.println("Give an int input:");
+            try {
+                return scanner.nextInt();
+            }catch (java.util.InputMismatchException e) {
+                scanner.nextLine();
+            }
+        }
+    }
+
+    static boolean inputBool() {
+        while (true) {
+            System.out.println("Give a boolean input:");
+            try {
+                return scanner.nextBoolean();
+            }catch (java.util.InputMismatchException e) {
+                scanner.nextLine();
+            }
+        }
+    }
 
 }

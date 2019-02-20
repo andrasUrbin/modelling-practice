@@ -84,7 +84,7 @@ public class Fridge implements Serializable {
         this.listOfFood = listOfFood;
     }
 
-    public Fridge(int temperature, int numberOfItems, boolean isFridgeOn, List<Food> listOfFood) {
+    Fridge(int temperature, int numberOfItems, boolean isFridgeOn, List<Food> listOfFood) {
         this.temperature = temperature;
         this.numberOfItems = numberOfItems;
         this.isFridgeOn = isFridgeOn;
@@ -97,17 +97,13 @@ public class Fridge implements Serializable {
         System.out.println("What's the veggie's name?");
         newVeggie.setName(scanner.nextLine());
         System.out.println("How many calories does it have?");
-        newVeggie.setCalories(scanner.nextInt());
-        scanner.nextLine();
+        newVeggie.setCalories(UI.inputInt());
         System.out.println("How many carboH does it have?");
-        newVeggie.setCarboH(scanner.nextInt());
-        scanner.nextLine();
+        newVeggie.setCarboH(UI.inputInt());
         System.out.println("How many protein does it have?");
-        newVeggie.setProtein(scanner.nextInt());
-        scanner.nextLine();
+        newVeggie.setProtein(UI.inputInt());
         System.out.println("How many fat does it have?");
-        newVeggie.setFat(scanner.nextInt());
-        scanner.nextLine();
+        newVeggie.setFat(UI.inputInt());
         System.out.println("What's the dominant vitamin in it?");
         newVeggie.setMostVitamin(scanner.nextLine());
         listOfFood.add(newVeggie);
@@ -124,20 +120,15 @@ public class Fridge implements Serializable {
         System.out.println("What's the fruit's name?");
         newFruit.setName(scanner.nextLine());
         System.out.println("How many calories does it have?");
-        newFruit.setCalories(scanner.nextInt());
-        scanner.nextLine();
+        newFruit.setCalories(UI.inputInt());
         System.out.println("How many carboH does it have?");
-        newFruit.setCarboH(scanner.nextInt());
-        scanner.nextLine();
+        newFruit.setCarboH(UI.inputInt());
         System.out.println("How many protein does it have?");
-        newFruit.setProtein(scanner.nextInt());
-        scanner.nextLine();
+        newFruit.setProtein(UI.inputInt());
         System.out.println("How many fat does it have?");
-        newFruit.setFat(scanner.nextInt());
-        scanner.nextLine();
+        newFruit.setFat(UI.inputInt());
         System.out.println("What's its ph index?");
-        newFruit.setPhIndex(scanner.nextInt());
-        scanner.nextLine();
+        newFruit.setPhIndex(UI.inputInt());
         listOfFood.add(newFruit);
         System.out.println("Your item is added to the fridge!");
         for(Food food : getListOfFood()){
@@ -147,25 +138,20 @@ public class Fridge implements Serializable {
     }
 
     void addMeat(List<Food> listOfFood){
-        System.out.println("Putting your fruit into the fridge!");
+        System.out.println("Putting your meat into the fridge!");
         Meat newMeat = new Meat(null, 0, 0, 0, 0, FoodType.Meat, true );
         System.out.println("What's the meat's name?");
         newMeat.setName(scanner.nextLine());
         System.out.println("How many calories does it have?");
-        newMeat.setCalories(scanner.nextInt());
-        scanner.nextLine();
+        newMeat.setCalories(UI.inputInt());
         System.out.println("How many carboH does it have?");
-        newMeat.setCarboH(scanner.nextInt());
-        scanner.nextLine();
+        newMeat.setCarboH(UI.inputInt());
         System.out.println("How many protein does it have?");
-        newMeat.setProtein(scanner.nextInt());
-        scanner.nextLine();
+        newMeat.setProtein(UI.inputInt());
         System.out.println("How many fat does it have?");
-        newMeat.setFat(scanner.nextInt());
-        scanner.nextLine();
+        newMeat.setFat(UI.inputInt());
         System.out.println("Is it a healthy meat?");
-        newMeat.setHealthyMeat(scanner.nextBoolean());
-        scanner.nextLine();
+        newMeat.setHealthyMeat(UI.inputBool());
         listOfFood.add(newMeat);
         System.out.println("Your item is added to the fridge!");
         for(Food food : getListOfFood()){
