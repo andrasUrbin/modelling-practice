@@ -148,8 +148,8 @@ public class Fridge implements Serializable {
 
     void addMeat(List<Food> listOfFood){
         System.out.println("Putting your fruit into the fridge!");
-        Meat newMeat = new Meat(null, 0, 0, 0, 0, FoodType.Fruit, true );
-        System.out.println("What's the fruit's name?");
+        Meat newMeat = new Meat(null, 0, 0, 0, 0, FoodType.Meat, true );
+        System.out.println("What's the meat's name?");
         newMeat.setName(scanner.nextLine());
         System.out.println("How many calories does it have?");
         newMeat.setCalories(scanner.nextInt());
